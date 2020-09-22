@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue js</title>
+	<script type="text/javascript" src=""></script>
+</head>
+<script type="text/javascript" src="../vue.min.js"></script>
+<body>
+	<div id="app">
+
+		<h1>{{ message }}</h1>
+
+		<img v-bind:src="img" alt="">
+
+		<p v-if="error">Error</p>
+		<p v-else>No Error</p>
+
+		<ul>
+			<li v-for="todo in todos">{{todo.text}}</li>
+		</ul>
+		<button v-on:click="reverseMessage">reverse message</button>
+
+		<form>
+			<label>Name:</label>
+			<input type="text" name="name" v-model="username">
+			<p>{{username}}</p>
+		</form>
+
+	</div>
+<script>
+
+	var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!',
+    img:'../photo/images.jfif',
+    error:true,
+
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ],
+
+    username:''
+
+  },
+  methods:{
+  	reverseMessage(){
+  		this.message = this.message.split('').reverse().join('')
+  	}
+  }
+})
+</script>
+</body>
+</html>

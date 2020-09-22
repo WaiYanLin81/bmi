@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bmi Calculator</title>
+	<script type="text/javascript" src="../vue.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+	<div id="app">
+		<div class="row">
+
+		<div class="form-group col-lg-3 px-5 py-5">
+			<h3>Calculate Your BMI</h1>
+
+		<input class="form-control" type="number" name="feet" v-model="feet" placeholder="feet"><br>
+		<input class="form-control" type="number" name="inches" v-model="inches" placeholder="inches"><br>
+		<input class="form-control" type="number" name="weight" v-model="weight" placeholder="pound"><br>
+		
+		<br><button v-on:click="bmicalcu" class="btn btn-success">Calculate</button>
+		<p >{{ result }}</p>
+		<p v-if='result == 0'  class="bg-transparent" >Result</p>
+		<p v-else-if='result < 18.4'  class="bg-primary" >Under Weight</p>
+		<p v-else-if='result >= 18.4 && result <= 24.9'  class="bg-success" >Normal</p>
+		<p v-else-if='result >= 25.0 && result  <= 29.9'  class="bg-warning" >Over Weight</p>
+		<p v-else-if='result > 3.0 '  class="bg-danger" >Very Over</p>
+	</div>
+</div>
+
+		
+	</div>
+
+	<script>
+		var app =  new Vue({
+			el: '#app',
+			data:{
+			feet:'',
+			inches:'',
+			weight:'',
+			result:''
+			},
+
+				methods:{
+					bmicalcu(){
+					var feet = parseInt(this.feet)
+					var inches = parseInt(this.inches)
+					var weight = parseInt(this.weight)
+					var height = inches + (feet*12)
+					var bmi  =(weight/(height*height))*703
+					this.result = bmi.toFixed(2)
+					
+					}
+					
+				}
+
+			})
+
+
+			
+	</script>
+</body>
+</html>
